@@ -1,0 +1,18 @@
+---
+- name: Look at all profiles and return matches using grep
+  hosts: all
+  
+  vars_prompt:
+    - name: prof_val
+      prompt: Which parameter do you want to see?
+      private: false
+  
+  become: true
+  gather_facts: false
+  tasks:
+  - name: check all profiles
+    shell: "grep -r {{prof_val}} /sapmnt/{{ sid }}/profile/*"
+    register: out
+    ignore_errors: true
+
+  - debug: var=out.stdout_lines
