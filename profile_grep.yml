@@ -2,10 +2,8 @@
 - name: Look at all profiles and return matches using grep
   hosts: hwt-pimpl01
   
-  vars_prompt:
-    - name: prof_val
-      prompt: Which parameter do you want to see?
-      private: false
+  vars:
+    prof_val: protectedwebmethods
   
   become: true
   gather_facts: false
